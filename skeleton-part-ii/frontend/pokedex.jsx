@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 
-
+import {requestOnePokemon} from "./actions/pokemon_actions"
+window.requestOnePokemon = requestOnePokemon
 document.addEventListener("DOMContentLoaded", () => {
   const rootEl = document.getElementById("root");
   const store = configureStore();

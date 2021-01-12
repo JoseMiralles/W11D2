@@ -10,8 +10,15 @@ class PokemonIndex extends React.Component{
   
   componentDidMount(){
   this.props.requestAllPokemon()
+  this.props.requestOnePokemon(3)
+  this.props.requestOnePokemon(20)
+  
+
   }
   
+  // componentDidUpdate(){
+  //   if (this.props.)
+  // }
   render(){
 
     const pokemonItems = this.props.pokemon.map(poke => {
