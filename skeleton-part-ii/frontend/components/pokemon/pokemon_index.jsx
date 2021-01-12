@@ -5,14 +5,13 @@ import PokemonIndexItem from "./pokemon_index_item";
 
 class PokemonIndex extends React.Component{
   constructor(props){
-  super(props)
+    super(props)
   }
   
   componentDidMount(){
-  this.props.requestAllPokemon()
-  this.props.requestOnePokemon(3)
-  this.props.requestOnePokemon(20)
-  
+    this.props.requestAllPokemon().then(() => {
+      this.props.requestOnePokemon(20); // For testing purposes.
+    })
 
   }
   

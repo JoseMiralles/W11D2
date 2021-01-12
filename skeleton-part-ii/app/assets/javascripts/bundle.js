@@ -207,17 +207,26 @@ var PokemonIndex = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(PokemonIndex);
 
   function PokemonIndex(props) {
+    var _this;
+
     _classCallCheck(this, PokemonIndex);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      selectedId: 0
+    };
+    return _this;
   }
 
   _createClass(PokemonIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.requestAllPokemon();
-      this.props.requestOnePokemon(3);
-      this.props.requestOnePokemon(20);
+      var _this2 = this;
+
+      this.props.requestAllPokemon().then(function () {
+        _this2.props.requestOnePokemon(20);
+      });
+      this.props.pokemon[this.state.selectedId];
     } // componentDidUpdate(){
     //   if (this.props.)
     // }
@@ -509,8 +518,9 @@ var pokemonReducer = function pokemonReducer() {
       return Object.assign({}, action.pokemon, state);
 
     case _actions_pokemon_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ONE_POKEMON"]:
+      debugger;
       var newState = Object.assign({}, state);
-      newState[action.pokemon.id] = action.pokemon;
+      newState[action.pokemon.pokemon.id] = action.pokemon.pokemon;
       return newState;
 
     default:
@@ -546,14 +556,18 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 /*!****************************************!*\
   !*** ./frontend/reducers/selectors.js ***!
   \****************************************/
-/*! exports provided: selectAllPokemon */
+/*! exports provided: selectAllPokemon, selectOnePokemon */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectAllPokemon", function() { return selectAllPokemon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectOnePokemon", function() { return selectOnePokemon; });
 var selectAllPokemon = function selectAllPokemon(state) {
   return Object.values(state.entities.pokemon);
+};
+var selectOnePokemon = function selectOnePokemon(state, id) {
+  return Object.values(state.entities.pokemon[id]);
 };
 
 /***/ }),
